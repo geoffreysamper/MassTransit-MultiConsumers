@@ -22,6 +22,7 @@ namespace Publisher
             while (true)
             {
                 Console.ReadLine();
+                
                 Bus.Instance.Publish(new ArticleUpdateMessage { ArticleId = "dmf1031545645", CreationDate = DateTime.Now });
             }
 

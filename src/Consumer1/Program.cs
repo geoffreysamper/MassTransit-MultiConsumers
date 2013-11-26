@@ -18,9 +18,12 @@ namespace Consumer1
                 cfg.UseRabbitMq();
 
                 // NOTE: Notice that this is a different queue than the other consumer of the same message
-                cfg.ReceiveFrom("rabbitmq://localhost/dcc.multi.consumer2");
+                cfg.ReceiveFrom("rabbitmq://localhost/dcc.multi.consumer1");
                 cfg.Subscribe(s => s.Consumer<ArticleUpdateMessageConsumer>());
+                
             });
+
+            Console.WriteLine("Waiting on messages");
         }
     }
 }

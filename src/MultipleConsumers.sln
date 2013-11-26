@@ -11,6 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer1", "Consumer1\Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer2", "Consumer2\Consumer2.csproj", "{5FEC3CC7-B87B-483A-B212-BC0D847ED292}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4D9D670A-777E-43DE-8D39-F51C388CE30E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldConsumer0", "OldConsumer0\OldConsumer0.csproj", "{BCC02591-C97E-4025-994B-A39760C22B3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +80,16 @@ Global
 		{5FEC3CC7-B87B-483A-B212-BC0D847ED292}.Release|Mixed Platforms.Build.0 = Release|x86
 		{5FEC3CC7-B87B-483A-B212-BC0D847ED292}.Release|x86.ActiveCfg = Release|x86
 		{5FEC3CC7-B87B-483A-B212-BC0D847ED292}.Release|x86.Build.0 = Release|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Debug|x86.ActiveCfg = Debug|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Debug|x86.Build.0 = Debug|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Release|Any CPU.ActiveCfg = Release|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Release|x86.ActiveCfg = Release|x86
+		{BCC02591-C97E-4025-994B-A39760C22B3E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,25 +7,23 @@ using Consumer.Shared;
 
 using MassTransit;
 
-using Messages;
-
-namespace Consumer2
+namespace OldConsumer0
 {
     class Program
     {
         static void Main(string[] args)
         {
-   
+            Console.WriteLine("I'm an old version of the consumer");
 
             ServiceBusFactory.New(cfg =>
             {
                 cfg.UseRabbitMq();
 
                 // NOTE: Notice that this is a different queue than the other consumer of the same message
-                cfg.ReceiveFrom("rabbitmq://localhost/dcc.multi.consumer2");
-                cfg.Subscribe(s => s.Consumer<ArticleUpdateMessageConsumer>());
+                cfg.ReceiveFrom("rabbitmq://localhost/dcc.multi.consumer0");
+                cfg.Subscribe(s => s.Consumer<OldArticleUpdateMessageConsumer>());
             });
-            Console.WriteLine("Waiting on messages");
+            Console.WriteLine("waiting for messages");
 
         }
     }
