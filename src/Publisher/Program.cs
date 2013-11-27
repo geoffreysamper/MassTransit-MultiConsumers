@@ -27,16 +27,7 @@ namespace Publisher
                 sbc.UseLog4Net();
                 sbc.UseRabbitMq();
                 sbc.ReceiveFrom("rabbitmq://localhost/dcc.multi.publisher");
-             
-
-                sbc.Subscribe(subs => subs.Handler<ArticleUpdateMessage>(
-                    msg =>
-                    {
-                        Console.WriteLine(msg.ArticleId);
-
-
-
-                    }));
+             sbc.Subscribe(subs => subs.Handler<ArticleUpdateMessage>(msg => Console.WriteLine(msg.ArticleId)));
             });
 
             Console.WriteLine("Overiew:");
