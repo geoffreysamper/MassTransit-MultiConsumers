@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 using Consumer.Shared;
@@ -13,6 +14,7 @@ namespace OldConsumer0
     {
         static void Main(string[] args)
         {
+            Console.Title = Assembly.GetEntryAssembly().GetName().Name;
             Console.WriteLine("I'm an old version of the consumer");
 
             ServiceBusFactory.New(cfg =>
