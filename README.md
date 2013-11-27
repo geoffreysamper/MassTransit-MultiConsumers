@@ -1,4 +1,10 @@
-##A Sample contains a Multi consumer with masstransit
+#This sample contains a Multi consumer with masstransit
+
+##two samples
+- sample msmq
+- sample rabittMQ
+
+
 
 ##using rabbitmq
 
