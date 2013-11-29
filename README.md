@@ -15,7 +15,7 @@ In this sample we have 3 consumers
 - Publisher: can publish messages
 - Publisher2: can publish message
  
-##Type of messages
+###Type of messages
 - 1 a message that triggers an exception on consumer1
 - 2 a message that triggers an exception on consumer2
 - 3 a message that triggers an exception on both consumer1 and consumer2
@@ -26,11 +26,10 @@ Each consumer has his own queue. see exchange section at rabitmq tutorial http:/
  
 
 ###setup 
-- install rabbitmq
+- install rabbitmq on you local machine
 
 
-###Warning
-__When using rabbitmq and masstransit the error queues where not created so I created them myself.__
+__Warning: When using rabbitmq and masstransit the error queues where not created so I created them myself.__
 
 
 
