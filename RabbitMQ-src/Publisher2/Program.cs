@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
-using Consumer.Shared;
-
 using MassTransit;
 using MassTransit.Log4NetIntegration;
 
-namespace Consumer1
+using Messages;
+
+using Publisher.Shared;
+
+namespace Publisher
 {
     class Program
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
-            ConsumerRunner runner = new ConsumerRunner();
-            runner.Run();
+            PublisherRunner publisherRunner = new PublisherRunner();
+            publisherRunner.Run();
 
         }
     }

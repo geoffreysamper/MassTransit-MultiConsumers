@@ -20,7 +20,7 @@ namespace OldConsumer0
             ServiceBusFactory.New(cfg =>
             {
                 cfg.UseRabbitMq();
-
+                cfg.SetDefaultRetryLimit(1);
                 // NOTE: Notice that this is a different queue than the other consumer of the same message
                 cfg.ReceiveFrom("rabbitmq://localhost/dcc.multi.consumer0");
                 cfg.Subscribe(s => s.Consumer<OldArticleUpdateMessageConsumer>());

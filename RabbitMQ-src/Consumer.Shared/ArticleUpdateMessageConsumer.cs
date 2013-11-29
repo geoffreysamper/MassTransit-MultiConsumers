@@ -29,7 +29,7 @@ namespace Consumer.Shared
               throw new Exception("Failed to proccess message for on client " + name );
           }
 
-          Console.WriteLine(" {0} articleupdate {1} {2}", name.ToUpperInvariant(), message.ArticleId, message.CreationDate);
+          Console.WriteLine(" {0}---> {1} articleupdate {2} {3}", name.ToUpperInvariant(), message.PublisherName,  message.ArticleId, message.CreationDate);
       }
 
       private static void WriteErrorToConsole(ArticleUpdateMessage message)
@@ -37,7 +37,7 @@ namespace Consumer.Shared
           lock (ConsoleLocker)
           {
               Console.ForegroundColor = ConsoleColor.Red;
-              Console.WriteLine("FAILED TO PROCESS MESSAGE " + message.CreationDate);
+              Console.WriteLine("{0}--->  FAILED TO PROCESS MESSAGE {1} " , message.PublisherName,  message.CreationDate);
               Console.ForegroundColor = OrginalColor;
           }
       }

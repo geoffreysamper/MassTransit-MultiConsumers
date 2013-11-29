@@ -14,6 +14,7 @@ namespace Messages
 
         public string ArticleId { get; set; }
         public DateTime CreationDate { get; set; }
+        public string PublisherName { get; set; }
         public string ThrowError
         { get; set; }
     }

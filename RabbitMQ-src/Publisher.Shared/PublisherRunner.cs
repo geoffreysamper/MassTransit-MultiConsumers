@@ -3,32 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+
 using MassTransit;
 using MassTransit.Log4NetIntegration;
 
 using Messages;
 
-namespace Publisher
+namespace Publisher.Shared
 {
-    class Program
+    public class PublisherRunner
     {
-        static void Main(string[] args)
+        private string _PublisherName;
+
+        private string _publisherUri;
+
+        public PublisherRunner()
+        {
+            this._PublisherName = Assembly.GetEntryAssembly().GetName().Name;
+            _publisherUri = "rabbitmq://localhost/dcc.multi." + this._PublisherName.ToLowerInvariant();
+        }
+
+
+        public void Run()
         {
             log4net.Config.XmlConfigurator.Configure();
             Console.Title = Assembly.GetEntryAssembly().GetName().Name;
-            Bus.Initialize(cfg =>
+            Bus.Initialize(sbc =>
             {
-                cfg.UseLog4Net();
-                cfg.UseMsmq();
-                cfg.UseMulticastSubscriptionClient();
-                cfg.UseControlBus();
-                cfg.UseJsonSerializer();
-                cfg.SetDefaultRetryLimit(1);
-                cfg.ReceiveFrom("msmq://localhost/dcc.multi.publisher");
-                cfg.Subscribe(subs => subs.Handler<ArticleUpdateMessage>(msg => Console.WriteLine(msg.ArticleId)));
+                sbc.UseLog4Net();
+                sbc.UseRabbitMq();
+                sbc.ReceiveFrom(_publisherUri);
+                sbc.Subscribe(subs => subs.Handler<ArticleUpdateMessage>(msg => Console.WriteLine(msg.ArticleId)));
             });
 
             Console.WriteLine("Overiew:");
+
             Console.WriteLine("1) send and throw an error on consumer1");
             Console.WriteLine("2) send and throw an error on consumer2");
             Console.WriteLine("3) send and throw an error on consomer 1 and 2");
@@ -57,14 +66,12 @@ namespace Publisher
                         break;
 
                 }
-
-
-                Bus.Instance.Publish(new ArticleUpdateMessage { ThrowError = throwErrorOn, ArticleId = "dmf1031545645", CreationDate = DateTime.Now });
+                
+                Bus.Instance.Publish(new ArticleUpdateMessage { ThrowError = throwErrorOn, ArticleId = "dmf1031545645", CreationDate = DateTime.Now, PublisherName = this._PublisherName});
 
             }
-
-
-
         }
+
+
     }
 }
