@@ -5,8 +5,7 @@
 - sample rabittMQ
 
 
-
-##using rabbitmq
+###Introduction
 
 In this sample we have 3 consumers
 - OldConsumer 0: Old Subscriber subsribes on articleupdate message: The article message only contains the article id
