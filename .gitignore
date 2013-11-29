@@ -16,7 +16,7 @@ debuglogs/
 *.suo
 *.user
 *.sln.docstates
-
+*.DotSettings
 
 
 # Build results
