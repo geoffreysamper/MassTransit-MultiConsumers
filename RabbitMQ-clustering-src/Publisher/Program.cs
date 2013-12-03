@@ -16,13 +16,7 @@ namespace Publisher
     {
         static void Main(string[] args)
         {
-           
-
-            
-
-
-
-            PublisherRunner publisherRunner = new PublisherRunner(args);
+            PublisherRunner publisherRunner = new PublisherRunner();
             publisherRunner.Run();
         }
 

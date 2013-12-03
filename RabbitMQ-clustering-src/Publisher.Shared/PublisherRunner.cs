@@ -15,16 +15,13 @@ namespace Publisher.Shared
 {
     public class PublisherRunner
     {
-        private readonly bool _noInterative;
-
         private readonly string _publisherUri;
 
         private string _PublisherName;
 
-        public PublisherRunner(string[] args)
+        public PublisherRunner()
         {
             this._publisherUri = GetRabittMqUrl();
-            this._noInterative =  args.Any(arg => arg.TrimStart('/').TrimStart('-').Equals("ni", StringComparison.OrdinalIgnoreCase));;
         }
 
         public void Run()
@@ -40,72 +37,36 @@ namespace Publisher.Shared
                     sbc.Subscribe(subs => subs.Handler<ArticleUpdateMessage>(msg => Console.WriteLine(msg.ArticleId + "  " + msg.CreationDate)));
                 });
 
-            if (this._noInterative)
-            {
-               
-                    this.SendEvery500Ms();
-             
-            }
 
-            this.ConsoleInteractive();
+            this.SendEvery500Ms();
+
+
         }
 
         private void SendEvery500Ms()
         {
             while (true)
             {
-                Bus.Instance.Publish(
-                    new ArticleUpdateMessage
+                try
+                {
+                    var message = new ArticleUpdateMessage
                     {
                         ThrowError = "",
                         ArticleId = "dmf1031545645",
                         CreationDate = DateTime.Now,
                         PublisherName = this._PublisherName
-                    });
-                Thread.Sleep(500);
-            }
-        }
+                    };
 
-        private void ConsoleInteractive()
-        {
-            Console.WriteLine("Overiew:");
+                    Bus.Instance.Publish(message);
+                    Thread.Sleep(500);
 
-            Console.WriteLine("1) send and throw an error on consumer1");
-            Console.WriteLine("2) send and throw an error on consumer2");
-            Console.WriteLine("3) send and throw an error on consomer 1 and 2");
-            Console.WriteLine("anykey) send a normal message");
-
-            Console.WriteLine("press a key to start");
-            while (true)
-            {
-                ConsoleKeyInfo choice = Console.ReadKey();
-                string throwErrorOn = string.Empty;
-                switch (choice.Key)
+                }
+                catch (Exception ex)
                 {
-                    case ConsoleKey.D1:
-                    case ConsoleKey.NumPad1:
-                        throwErrorOn = "consumer1";
-                        break;
-                    case ConsoleKey.D2:
-                    case ConsoleKey.NumPad2:
-                        throwErrorOn = "consumer2";
-                        break;
-                    case ConsoleKey.D3:
-                    case ConsoleKey.NumPad3:
-                        throwErrorOn = "all";
-                        break;
-                    default:
-                        break;
+                    Console.WriteLine("failed to publish message {0}. Enter sleep mode for 1sec", ex.ToString());
+                    Thread.Sleep(1000);
                 }
 
-                Bus.Instance.Publish(
-                    new ArticleUpdateMessage
-                    {
-                        ThrowError = throwErrorOn,
-                        ArticleId = "dmf1031545645",
-                        CreationDate = DateTime.Now,
-                        PublisherName = this._PublisherName
-                    });
             }
         }
 
@@ -122,7 +83,7 @@ namespace Publisher.Shared
                 server = "localhost";
             }
 
-            string queuename = "dcc.multi." + Assembly.GetEntryAssembly().GetName().Name.ToLowerInvariant();
+            string queuename = "dcc.multi.clustering." + Assembly.GetEntryAssembly().GetName().Name.ToLowerInvariant();
 
             string url = string.Format("rabbitmq://{0}/{1}", server, queuename);
 

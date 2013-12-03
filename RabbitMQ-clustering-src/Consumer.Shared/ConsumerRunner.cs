@@ -13,7 +13,7 @@ namespace Consumer.Shared
     public class ConsumerRunner
     {
         private string _consumerUri;
-
+        
         public ConsumerRunner()
         {
 
