@@ -33,7 +33,7 @@ namespace Consumer.Shared
                 server = "localhost";
             }
 
-            var queuename  = "dcc.multi." + Assembly.GetEntryAssembly().GetName().Name.ToLowerInvariant();
+            var queuename = "dcc.multi.clustering." + Assembly.GetEntryAssembly().GetName().Name.ToLowerInvariant();
 
 
             string url = string.Format("rabbitmq://{0}/{1}", server, queuename);

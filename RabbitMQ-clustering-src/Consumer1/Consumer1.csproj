@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5FEC3CC7-B87B-483A-B212-BC0D847ED292}</ProjectGuid>
+    <ProjectGuid>{C5D0B066-CCE6-4D05-BFDB-47F55EE20F3A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Consumer2</RootNamespace>
-    <AssemblyName>Consumer2</AssemblyName>
+    <RootNamespace>Consumer1</RootNamespace>
+    <AssemblyName>Consumer1</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -74,19 +74,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Consumer.Shared\Consumer.Shared.csproj">
       <Project>{EE4586B1-69F9-4469-BF93-FF3716697F57}</Project>
       <Name>Consumer.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Messages\Messages.csproj">
-      <Project>{B50814D6-8C76-4D37-9B69-1189CBEB6167}</Project>
-      <Name>Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

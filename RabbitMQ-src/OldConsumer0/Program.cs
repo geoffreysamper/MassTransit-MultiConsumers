@@ -7,6 +7,7 @@ using System.Text;
 using Consumer.Shared;
 
 using MassTransit;
+using MassTransit.Transports.RabbitMq;
 
 namespace OldConsumer0
 {
@@ -16,7 +17,6 @@ namespace OldConsumer0
         {
             Console.Title = Assembly.GetEntryAssembly().GetName().Name;
             Console.WriteLine("I'm an old version of the consumer");
-
             ServiceBusFactory.New(cfg =>
             {
                 cfg.UseRabbitMq();
